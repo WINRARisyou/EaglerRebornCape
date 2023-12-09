@@ -66,7 +66,7 @@ make sure to set it to "blank repl"
 
 ### Limitations
 - only SRV records are accepted
-- cannot add a port to the address of the server(for example example.com:25565 is not allowed)
+- cannot add a port to the address of the server (for example example.com:25565 is not allowed)
 
 
 
