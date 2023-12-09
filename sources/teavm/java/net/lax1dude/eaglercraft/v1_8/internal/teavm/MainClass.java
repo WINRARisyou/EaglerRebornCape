@@ -64,6 +64,7 @@ public class MainClass {
 				JSONObject eaglercraftOpts = new JSONObject(opts);
 				
 				configRootElement = eaglercraftOpts.getString("container");
+				relayURL = eaglercraftOpts.getString("relayURL");
 				
 				Object epkConfig = eaglercraftOpts.get("assetsURI");
 				if(epkConfig instanceof JSONArray) {
@@ -132,7 +133,7 @@ public class MainClass {
 				
 			});
 			
-			systemOut.println("MainClass: [INFO] initializing ea runtime");
+			systemOut.println("MainClass: [INFO] initializing eagler runtime");
 			
 			try {
 				EagRuntime.create();
@@ -196,6 +197,7 @@ public class MainClass {
 	}
 
 	public static String configRootElement = null;
+	public static String relayURL = null;
 	public static EPKFileEntry[] configEPKFiles = null;
 	public static String configLocalesFolder = null;
 	
@@ -204,12 +206,19 @@ public class MainClass {
 		void call(String message, String file, int line, int col, JSError error);
 	}
 	
-	@JSBody(params = { "handler" }, script = "window.addEventListener(\"error\", function(e) { handler("
-			+ "(typeof e.message === \"string\") ? e.message : null,"
-			+ "(typeof e.filename === \"string\") ? e.filename : null,"
-			+ "(typeof e.lineno === \"number\") ? e.lineno : 0,"
-			+ "(typeof e.colno === \"number\") ? e.colno : 0,"
-			+ "(typeof e.error === \"undefined\") ? null : e.error); });")
+	@JSBody(params = { "handler" }, script = "window.addEventListener(\"error\", function (e) {\r\n" + //
+			"  if(window.pluginGracePeriod === true){\r\n" + //
+			"    console.log(\"Suppressed crash.\")\r\n" + //
+			"    return; //Nothing to see here!\r\n" + //
+			"  }\r\n" + //
+			"  handler(\r\n" + //
+			"    typeof e.message === \"string\" ? e.message : null,\r\n" + //
+			"    typeof e.filename === \"string\" ? e.filename : null,\r\n" + //
+			"    typeof e.lineno === \"number\" ? e.lineno : 0,\r\n" + //
+			"    typeof e.colno === \"number\" ? e.colno : 0,\r\n" + //
+			"    typeof e.error === \"undefined\" ? null : e.error\r\n" + //
+			"  );\r\n" + //
+			"});")
 	public static native void setWindowErrorHandler(WindowErrorHandler handler);
 	
 	public static void showCrashScreen(String message, Throwable t) {
@@ -221,6 +230,15 @@ public class MainClass {
 
 	private static boolean isCrashed = false;
 
+	private static String getWittyComment() {
+		String[] astring = new String[]{"Who set us up the TNT?", "Everything's going to plan. No, really, that was supposed to happen.", "Uh... Did I do that?", "Oops.", "Why did you do that?", "I feel sad now :(", "My bad.", "I'm sorry, Dave.", "I let you down. Sorry :(", "On the bright side, I bought you a teddy bear!", "Daisy, daisy...", "Oh - I know what I did wrong!", "Hey, that tickles! Hehehe!", "I blame OtterDev.", "You should try our sister game, Minceraft!", "Don't be sad. I'll do better next time, I promise!", "Don't be sad, have a hug! <3", "I just don't know what went wrong :(", "Shall we play a game?", "Quite honestly, I wouldn't worry myself about that.", "I bet Cylons wouldn't have this problem.", "Sorry :(", "Surprise! Haha. Well, this is awkward.", "Would you like a cupcake?", "Hi. I'm Eaglercraft, and I'm a crashaholic.", "Ooh. Shiny.", "This doesn't make any sense!", "Why is it breaking :(", "Don't do that.", "Ouch. That hurt :(", "You're mean.", "This is a token for 1 free hug. Redeem at your nearest Mojangsta: [~~HUG~~]", "There are four lights!", "But it works on my machine."};
+		try {
+         return astring[(int)(System.nanoTime() % (long)astring.length)];
+      } catch (Throwable var2) {
+         return "I've fallen and I can't get up!";
+      }
+	}
+
 	public static void showCrashScreen(String t) {
 		if(!isCrashed) {
 			isCrashed = true;
@@ -229,12 +247,12 @@ public class MainClass {
 			HTMLElement el = doc.getElementById(configRootElement);
 
 			StringBuilder str = new StringBuilder();
-			str.append("Game Crashed!\n\n");
+			str.append("Eagler Reborn has crashed!\n\n" + getWittyComment() + "\n\n");
 			str.append(t);
 			str.append('\n').append('\n');
 			str.append("eaglercraft.version = \"").append(EaglercraftVersion.projectForkVersion).append("\"\n");
 			str.append("eaglercraft.minecraft = \"1.8.8\"\n");
-			str.append("eaglercraft.brand = \"" + EaglercraftVersion.projectForkVendor + "\"\n");
+			str.append("eaglercraft.brand = \"" + "Eagler Reborn" + "\"\n");
 			str.append("eaglercraft.username = \"").append(EaglerProfile.getName()).append("\"\n");
 			str.append('\n');
 			str.append(addWebGLToCrash());

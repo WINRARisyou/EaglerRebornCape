@@ -1,8 +1,10 @@
 ![image](https://github.com/EaglerReborn/EaglerReborn/assets/134523836/e59bba1d-266b-4313-aa8f-18a7d39887b7)
 ---
 ### Eaglercraft client with Java support.
+![title screen](https://github.com/EaglerReborn/EaglerReborn/assets/134523836/65852fd2-7667-43f8-8cd8-68dfc73ed686)
 
-![Eagler Reborn Title Screen](https://github.com/EaglerReborn/EaglerReborn/assets/134523836/96439cd8-02b6-458e-96d2-2ccaf4a0d461)
+
+
 
 ---
 
@@ -37,7 +39,6 @@
 4. Type `chmod +x CompileLatestClient.sh` and hit enter
 5. Type `./CompileLatestClient.sh` and hit enter, a GUI resembling a classic windows installer should open
 6. Follow the steps shown to you in the new window to finish compiling
-7. (real!)
 
 
 ## Joining Non-Eagler servers
@@ -48,7 +49,7 @@ To join non eagler servers on the client, just do not include `wss://` in the se
 If the server has both Java and Eagler support, you should definitely use Eagler. Here's why:
 
 1. Eagler is much faster than Java
-2. Eagler is supported natively, with needing to use a relay, resulting in better ping.
+2. Eagler is supported natively without needing to use a relay, resulting in better ping.
 
 ---
 
@@ -57,9 +58,22 @@ If the server has both Java and Eagler support, you should definitely use Eagler
 
 <a href="https://replit.com/new/github/EaglerReborn/relay"><img src="https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/main/buttons/remade/replit.svg"></img></a>
 
-
 Just click the "Run on replit" button to make a relay.
 make sure to set it to "blank repl" 
-run the repl, then wait a bit.
-once u see the webview, ur done. (once u see the `>` its 100% finished) 
-take the link in the webview and replace `https://` with `wss://`. then, fork this repo and go to `sources/main/java/me/otterdev/eaglerreborn/NetworkSettings.java`. take the `wss://` link u made earlier and replace `wss://reborn-relay.otterdev.repl.co` with your relay. Afterward, compile the client and your relay is all setup!
+
+
+---
+
+### Limitations
+- only SRV records are accepted
+- cannot add a port to the address of the server(for example example.com:25565 is not allowed)
+
+
+
+### Installing Plugins
+[How to install plugins](https://eaglerreborn.github.io/guide/InstallingPlugins.html)
+
+### Plugin API Documentation
+
+[PluginAPI.md](https://eaglerreborn.github.io/plugindocs)
+

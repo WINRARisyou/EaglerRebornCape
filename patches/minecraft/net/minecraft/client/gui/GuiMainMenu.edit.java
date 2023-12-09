@@ -110,7 +110,14 @@
 ~ 			backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background", viewportTexture);
 ~ 		}
 
-> DELETE  10  @  10 : 11
+> INSERT  8 : 12  @  8
+
++ 		} else if (calendar.get(2) + 1 == 6 && calendar.get(5) == 9) {
++ 			this.splashText = "nice";
++ 		} else if (calendar.get(2) + 1 == 6 && calendar.get(5) == 1) {
++ 			this.splashText = "Happy Birthday, Notch!";
+
+> DELETE  2  @  2 : 3
 
 > CHANGE  1 : 6  @  1 : 5
 
@@ -125,10 +132,9 @@
 + 		this.addSingleplayerMultiplayerButtons(i, 24);
 + 
 
-> CHANGE  2 : 5  @  2 : 4
+> CHANGE  2 : 4  @  2 : 4
 
-~ 		this.buttonList.add(new GuiButton(4, this.width / 2 + 2, i + 72 + 12, 98, 20,
-~ 				"Edit Profile"));
+~ 		this.buttonList.add(new GuiButton(4, this.width / 2 + 2, i + 72 + 12, 98, 20, "Edit Profile"));
 ~ 
 
 > CHANGE  1 : 6  @  1 : 2
@@ -147,10 +153,13 @@
 
 ~ 			this.field_92019_w = this.field_92021_u + (line2 ? 24 : 11);
 
-> CHANGE  6 : 10  @  6 : 9
+> CHANGE  6 : 13  @  6 : 9
 
-~ 		//testing
-~ 		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, parInt1, I18n.format("menu.playdemo", new Object[0])));
+~ 		// testing
+~ 		// this.buttonList
+~ 		// .add(new GuiButton(1, this.width / 2 - 100, parInt1,
+~ 		// I18n.format("menu.playdemo", new Object[0])));
+~ 
 ~ 		// idk what tf this is
 ~ 		this.buttonList.add(new GuiButton(2, this.width / 2 - 100, parInt1 + parInt2 * 0,
 
@@ -201,15 +210,12 @@
 
 > DELETE  24  @  24 : 26
 
-> CHANGE  7 : 8  @  7 : 8
+> CHANGE  7 : 9  @  7 : 12
 
 ~ 		if (this.isDefault || (double) this.updateCounter < 1.0E-4D) {
+~ 			this.drawTexturedModalRect(k + 0, b0 + 0, 0, 0, 155, 44);
 
-> CHANGE  4 : 5  @  4 : 5
-
-~ 			this.drawTexturedModalRect(k + 154, b0 + 0, 0, 45, 155, 44);
-
-> INSERT  5 : 18  @  5
+> INSERT  6 : 19  @  6
 
 + 		boolean isForkLabel = ((this.openGLWarning1 != null && this.openGLWarning1.length() > 0)
 + 				|| (this.openGLWarning2 != null && this.openGLWarning2.length() > 0));
