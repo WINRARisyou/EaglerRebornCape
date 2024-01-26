@@ -1,4 +1,4 @@
-![image](https://github.com/EaglerReborn/EaglerReborn/assets/134523836/e59bba1d-266b-4313-aa8f-18a7d39887b7)
+![image](https://raw.githubusercontent.com/Orphanlol/EaglerReborn/main/assets/eaglerreborn-logo.png)
 ---
 ### Eaglercraft client with Java support.
 ![title screen](https://github.com/EaglerReborn/EaglerReborn/assets/134523836/65852fd2-7667-43f8-8cd8-68dfc73ed686)
@@ -66,7 +66,7 @@ make sure to set it to "blank repl"
 
 ### Limitations
 - only SRV records are accepted
-- cannot add a port to the address of the server(for example example.com:25565 is not allowed)
+- cannot add a port to the address of the server (for example example.com:25565 is not allowed)
 
 
 
